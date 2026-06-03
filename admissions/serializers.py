@@ -60,3 +60,22 @@ class AdmissionProcessDetailSerializer(LanguageMixin,serializers.ModelSerializer
         lang = self.get_language()
         return getattr(obj, f"content_{lang}")
 
+class TuitionFeeSerializer(LanguageMixin,serializers.ModelSerializer):
+    faculty_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TuitionFee
+        fields = (
+            "id",
+            "faculty",
+            "faculty_name",
+            "national_fee",
+            "international_fee",
+        )
+
+    def get_faculty_name(self, obj):
+        lang = self.get_language()
+        return getattr(
+            obj.faculty,
+            f"title_{lang}"
+        )
