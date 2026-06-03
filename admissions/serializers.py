@@ -79,3 +79,24 @@ class TuitionFeeSerializer(LanguageMixin,serializers.ModelSerializer):
             obj.faculty,
             f"title_{lang}"
         )
+
+class ScholarshipSerializer(LanguageMixin,serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    content = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Scholarship
+        fields = (
+            "id",
+            "title",
+            "percentage",
+            "content",
+        )
+
+    def get_title(self, obj):
+        lang = self.get_language()
+        return getattr(obj, f"title_{lang}")
+
+    def get_content(self, obj):
+        lang = self.get_language()
+        return getattr(obj, f"content_{lang}")
