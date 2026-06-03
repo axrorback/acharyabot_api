@@ -1,10 +1,8 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework import generics
 
-from .models import FAQ
-from .serializers import (
-    FAQListSerializer,
-    FAQDetailSerializer
-)
+from .models import FAQ , ContactMessage
+from .serializers import FAQListSerializer,FAQDetailSerializer, ContactMessageSerializer
 
 
 class FAQViewSet(ReadOnlyModelViewSet):
@@ -15,3 +13,8 @@ class FAQViewSet(ReadOnlyModelViewSet):
             return FAQListSerializer
 
         return FAQDetailSerializer
+
+class ContactMessageCreateAPIView(generics.CreateAPIView):
+
+    queryset = ContactMessage.objects.all()
+    serializer_class = ContactMessageSerializer
