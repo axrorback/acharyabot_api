@@ -43,3 +43,16 @@ class Scholarship(models.Model):
 
     def __str__(self):
         return self.title_uz
+
+class Grant(models.Model):
+
+    title_uz = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    title_ru = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=12,decimal_places=2 , blank=True, null=True)
+    content_uz = models.TextField()
+    content_en = models.TextField()
+    content_ru = models.TextField()
+
+    def __str__(self):
+        return self.title_uz
