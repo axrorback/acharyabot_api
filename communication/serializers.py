@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import FAQ
+from .models import FAQ , ContactMessage
 
 
 class LanguageMixin:
@@ -52,3 +52,14 @@ class FAQDetailSerializer(LanguageMixin, serializers.ModelSerializer):
     def get_answer(self, obj):
         lang = self.get_language()
         return getattr(obj, f"answer_{lang}")
+
+class ContactMessageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ContactMessage
+        fields = (
+            "telegram_id",
+            "full_name",
+            "username",
+            "message",
+        )
