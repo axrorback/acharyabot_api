@@ -63,3 +63,31 @@ class ContactMessageSerializer(serializers.ModelSerializer):
             "username",
             "message",
         )
+
+    def validate_telegram_id(self, value):
+        if value <= 0:
+            raise serializers.ValidationError(
+                "Invalid telegram id."
+            )
+
+        return value
+
+    def validate_full_name(self, value):
+        value = value.strip()
+
+        if len(value) < 3:
+            raise serializers.ValidationError(
+                "Full name is too short."
+            )
+
+        return value
+
+    def validate_message(self, value):
+        value = value.strip()
+
+        if len(value) < 5:
+            raise serializers.ValidationError(
+                "Message is too short."
+            )
+
+        return value
