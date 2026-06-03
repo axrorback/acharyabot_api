@@ -20,3 +20,11 @@ class Application(models.Model):
 
     def __str__(self):
         return self.application_number
+
+class ApplicationDocument(models.Model):
+    application = models.ForeignKey(Application,on_delete=models.CASCADE)
+    file = models.FileField(upload_to="applications/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.application.application_number
