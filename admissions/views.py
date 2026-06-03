@@ -3,13 +3,15 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import (
     AdmissionProcess,
     TuitionFee,
+    Grant,
 
 )
 
 from .serializers import (
     AdmissionProcessListSerializer,
     AdmissionProcessDetailSerializer,
-   TuitionFeeSerializer
+   TuitionFeeSerializer,
+   GrantSerializer
 )
 
 
@@ -24,7 +26,14 @@ class AdmissionProcessViewSet(ReadOnlyModelViewSet):
 
         return AdmissionProcessDetailSerializer
 
+
+
 class TuitionFeeViewSet(ReadOnlyModelViewSet):
     queryset = TuitionFee.objects.select_related("faculty")
-
     serializer_class = TuitionFeeSerializer
+
+
+
+class GrantViewSet(ReadOnlyModelViewSet):
+    queryset = Grant.objects.all()
+    serializer_class = GrantSerializer
