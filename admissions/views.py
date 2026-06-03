@@ -4,7 +4,8 @@ from .models import (
     AdmissionProcess,
     TuitionFee,
     Grant,
-    RequiredDocument
+    RequiredDocument,
+    Scholarship
 )
 
 from .serializers import (
@@ -12,7 +13,8 @@ from .serializers import (
     AdmissionProcessDetailSerializer,
    TuitionFeeSerializer,
    GrantSerializer,
-   RequiredDocumentSerializer
+   RequiredDocumentSerializer,
+   ScholarshipSerializer
 )
 
 
@@ -33,8 +35,6 @@ class TuitionFeeViewSet(ReadOnlyModelViewSet):
     queryset = TuitionFee.objects.select_related("faculty")
     serializer_class = TuitionFeeSerializer
 
-
-
 class GrantViewSet(ReadOnlyModelViewSet):
     queryset = Grant.objects.all()
     serializer_class = GrantSerializer
@@ -43,3 +43,8 @@ class GrantViewSet(ReadOnlyModelViewSet):
 class RequiredDocumentViewSet(ReadOnlyModelViewSet):
     queryset = RequiredDocument.objects.all()
     serializer_class = RequiredDocumentSerializer
+
+
+class ScholarshipViewSet(ReadOnlyModelViewSet):
+    queryset = Scholarship.objects.all()
+    serializer_class = ScholarshipSerializer
