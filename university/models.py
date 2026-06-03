@@ -28,3 +28,12 @@ class Hostel(models.Model):
 
     def __str__(self):
         return "Hostel"
+
+class AcademicCalendar(models.Model):
+
+    academic_year = models.CharField(max_length=50)
+    semester_start = models.DateField()
+    semester_end = models.DateField()
+
+    def __str__(self):
+        return "Academic Calendar"
