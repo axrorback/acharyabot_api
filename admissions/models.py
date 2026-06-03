@@ -29,3 +29,16 @@ class TuitionFee(models.Model):
 
     def __str__(self):
         return self.faculty.title_uz
+
+
+class Scholarship(models.Model):
+
+    title_uz = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    title_ru = models.CharField(max_length=255)
+
+    percentage = models.PositiveIntegerField()
+
+    content_uz = models.TextField()
+    content_en = models.TextField()
+    content_ru = models.TextField()
