@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Application
+from .models import Application , ApplicationDocument
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
@@ -13,3 +13,8 @@ class ApplicationSerializer(serializers.ModelSerializer):
             "created_at",
         )
 
+class ApplicationDocumentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ApplicationDocument
+        fields = "__all__"
