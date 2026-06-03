@@ -1,8 +1,24 @@
 from rest_framework import serializers
+
 from .models import FAQ
 
 
-class FAQListSerializer(serializers.ModelSerializer):
+class LanguageMixin:
+    def get_language(self):
+        request = self.context.get("request")
+
+        if not request:
+            return "uz"
+
+        lang = request.query_params.get("lang", "uz")
+
+        if lang not in ["uz", "en", "ru"]:
+            lang = "uz"
+
+        return lang
+
+
+class FAQListSerializer(LanguageMixin, serializers.ModelSerializer):
     question = serializers.SerializerMethodField()
 
     class Meta:
@@ -13,16 +29,11 @@ class FAQListSerializer(serializers.ModelSerializer):
         )
 
     def get_question(self, obj):
-        lang = self.context["request"].query_params.get(
-            "lang",
-            "uz"
-        )
+        lang = self.get_language()
+        return getattr(obj, f"question_{lang}")
 
-        return getattr(
-            obj,
-            f"question_{lang}"
-        )
-class FAQDetailSerializer(serializers.ModelSerializer):
+
+class FAQDetailSerializer(LanguageMixin, serializers.ModelSerializer):
     question = serializers.SerializerMethodField()
     answer = serializers.SerializerMethodField()
 
@@ -35,23 +46,9 @@ class FAQDetailSerializer(serializers.ModelSerializer):
         )
 
     def get_question(self, obj):
-        lang = self.context["request"].query_params.get(
-            "lang",
-            "uz"
-        )
-
-        return getattr(
-            obj,
-            f"question_{lang}"
-        )
+        lang = self.get_language()
+        return getattr(obj, f"question_{lang}")
 
     def get_answer(self, obj):
-        lang = self.context["request"].query_params.get(
-            "lang",
-            "uz"
-        )
-
-        return getattr(
-            obj,
-            f"answer_{lang}"
-        )
+        lang = self.get_language()
+        return getattr(obj, f"answer_{lang}")
