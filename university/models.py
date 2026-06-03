@@ -37,3 +37,16 @@ class AcademicCalendar(models.Model):
 
     def __str__(self):
         return "Academic Calendar"
+
+class VisaSupport(models.Model):
+
+    title_uz = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    title_ru = models.CharField(max_length=255)
+
+    description_uz = models.TextField()
+    description_en = models.TextField()
+    description_ru = models.TextField()
+
+    def __str__(self):
+        return "Visa Support"
