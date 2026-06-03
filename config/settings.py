@@ -56,6 +56,10 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
 AUTH_USER_MODEL = 'accounts.User'
 
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -94,3 +98,9 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Acharya Telegram Bot API",
+    "DESCRIPTION": "API documentation for Acharya Telegram Bot",
+    "VERSION": "1.0.0",
+}
