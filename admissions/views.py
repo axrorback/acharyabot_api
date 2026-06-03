@@ -4,10 +4,7 @@ from .models import (
     AdmissionProcess,
     TuitionFee,
 
-
 )
-
-
 
 from .serializers import (
     AdmissionProcessListSerializer,
@@ -27,11 +24,7 @@ class AdmissionProcessViewSet(ReadOnlyModelViewSet):
 
         return AdmissionProcessDetailSerializer
 
-class TuitionFeeViewSet(
-    ReadOnlyModelViewSet
-):
-    queryset = TuitionFee.objects.select_related(
-        "faculty"
-    )
+class TuitionFeeViewSet(ReadOnlyModelViewSet):
+    queryset = TuitionFee.objects.select_related("faculty")
 
     serializer_class = TuitionFeeSerializer
