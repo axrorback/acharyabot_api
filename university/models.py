@@ -50,3 +50,18 @@ class VisaSupport(models.Model):
 
     def __str__(self):
         return "Visa Support"
+
+class IncubationCenter(models.Model):
+
+    title_uz = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    title_ru = models.CharField(max_length=255)
+
+    description_uz = models.TextField()
+    description_en = models.TextField()
+    description_ru = models.TextField()
+
+    image = models.ImageField(upload_to="incubation_center_images/")
+
+    def __str__(self):
+        return "Incubation Center"
