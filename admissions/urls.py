@@ -12,3 +12,5 @@ router.register("scholarships",ScholarshipViewSet,basename="scholarships")
 router.register("grants",GrantViewSet,basename="grants")
 
 router.register("documents",RequiredDocumentViewSet,basename="documents")
+
+urlpatterns = router.urls
