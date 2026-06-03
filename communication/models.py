@@ -13,3 +13,18 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return self.full_name
+
+class FAQ(models.Model):
+
+    question_uz = models.CharField(max_length=500)
+    question_en = models.CharField(max_length=500)
+    question_ru = models.CharField(max_length=500)
+
+    answer_uz = models.TextField()
+    answer_en = models.TextField()
+    answer_ru = models.TextField()
+
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.question_uz
