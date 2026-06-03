@@ -56,3 +56,13 @@ class Grant(models.Model):
 
     def __str__(self):
         return self.title_uz
+
+class RequiredDocument(models.Model):
+
+    title_uz = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    title_ru = models.CharField(max_length=255)
+    is_required = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title_uz
