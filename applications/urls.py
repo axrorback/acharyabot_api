@@ -4,3 +4,5 @@ from .views import *
 router = DefaultRouter()
 
 router.register("applications",ApplicationViewSet,basename="applications")
+
+urlpatterns = router.urls
