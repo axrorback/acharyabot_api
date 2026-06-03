@@ -100,3 +100,24 @@ class ScholarshipSerializer(LanguageMixin,serializers.ModelSerializer):
     def get_content(self, obj):
         lang = self.get_language()
         return getattr(obj, f"content_{lang}")
+
+class GrantSerializer(LanguageMixin,serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    content = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Grant
+        fields = (
+            "id",
+            "title",
+            "amount",
+            "content",
+        )
+
+    def get_title(self, obj):
+        lang = self.get_language()
+        return getattr(obj, f"title_{lang}")
+
+    def get_content(self, obj):
+        lang = self.get_language()
+        return getattr(obj, f"content_{lang}")
